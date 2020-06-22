@@ -17,7 +17,7 @@ class InfoUser extends Model
     //mi permette di rimuover le operazioni di timestamp (che noi abbiamo eliminato dalla tabella infousers) che di solito laravel fa in automatico
     public $timestamps = false;
 
-    //creo relazione con tabella user
+    //creo relazione con tabella user (one to many)
     public function user() {
         return $this->belongsTo('App\User');
     }

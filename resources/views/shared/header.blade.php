@@ -12,7 +12,8 @@
             <h2>Brand</h2>
             <ul>
                <li><a href="{{ route('welcome') }}">Home</a></li>
-               <li><a href="#">Blog</a></li>
+               <li><a href="{{ route('users.index') }}">Blog</a></li>
+               <li><a href="{{ route('posts.index') }}">Post</a></li>
             </ul>
         </nav>
     </header>

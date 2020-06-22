@@ -18,3 +18,5 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::resource('users', 'InfoUserController');
+
+Route::resource('posts', 'PostController');

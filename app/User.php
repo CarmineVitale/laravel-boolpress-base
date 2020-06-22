@@ -37,8 +37,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //creo relazione con tabella infouser
+    //creo relazione con tabella infouser (one to many)
     public function info() {
         return $this->hasOne('App\InfoUser');
+    }
+    //creo relazione con tabella POST (many to many)
+    public function posts() {
+        return $this->hasMany('App\Post');
     }
 }
