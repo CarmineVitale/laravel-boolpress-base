@@ -9,7 +9,7 @@
             @if (!$loop->last) <hr> @endif
         </div>
     @endforeach
-    {{-- Impaginazione post --}}
+    {{-- Impaginazione posts --}}
     <h4>
         {{ $posts->links() }}
     </h4>
