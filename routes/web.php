@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::resource('', controller);
+Route::resource('users', 'InfoUserController');

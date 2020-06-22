@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //creo relazione con tabella infouser
+    public function info() {
+        return $this->hasOne('App\InfoUser');
+    }
 }
