@@ -14,14 +14,14 @@ class PostTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        Post::truncate();
+        //Post::truncate();
         $users = User::all();
 
         for($i = 0; $i < 8; $i++) {
             $newPost = new Post();
             $newPost->title = $faker->text(10);
             $newPost->description = $faker->text(200);
-            $newPost->user_id = $users->random()->id;
+            $newPost->users_id = $users->random()->id;
 
             $newPost->save();
         }
