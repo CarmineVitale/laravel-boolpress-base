@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'user_id',
+        'users_id',
         'title',
         'description',
     ];
@@ -17,7 +17,7 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function posts() {
+    public function comments() {
         return $this->hasMany('App\Comment');
     }
    

@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::resource('users', 'InfoUserController');
 
 Route::resource('posts', 'PostController');
+
+Route::resource('comments', 'CommentController');

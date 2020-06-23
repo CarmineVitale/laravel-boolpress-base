@@ -12,7 +12,7 @@ class Comment extends Model
         'body'
     ];
 
-    public function user() {
+    public function post() {
         return $this->belongsTo('App\Post');
     }
 }

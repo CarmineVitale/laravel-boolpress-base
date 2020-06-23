@@ -14,6 +14,7 @@
                <li><a href="{{ route('welcome') }}">Home</a></li>
                <li><a href="{{ route('users.index') }}">Blog</a></li>
                <li><a href="{{ route('posts.index') }}">Post</a></li>
+               <li><a href="{{ route('comments.index') }}">Commenti</a></li>
             </ul>
         </nav>
     </header>
