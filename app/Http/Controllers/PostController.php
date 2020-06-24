@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
+use Illuminate\Support\Str;
 
 
 class PostController extends Controller
@@ -18,7 +20,7 @@ class PostController extends Controller
         //$posts = Post::all();
 
         //impaginazione 
-        $posts = Post::paginate(3);
+        $posts = Post::orderBy('id', 'desc')->paginate(3);
 
         return view('posts.index', compact('posts'));
 
@@ -31,7 +33,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $tags = Tag::all();
+
+        return view('posts.create', compact('tags'));
     }
 
     /**
@@ -42,7 +46,32 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //dump($request);
+       $request->validate([
+        'title' => 'required',
+        'description' => 'required',
+        //'tags.*' => 'exists:tags, id'
+       ]);
+    
+       $data = $request->all();
+       
+       //prendiamo l'id dell utente
+       $data['user_id'] = 3; //<- aggiungo user_id all' array data
+       
+       //generiamo post slug
+       $data['slug'] = Str::slug($data['title'], '-'); //<- aggiungo slug all' array data
+
+       $newPost = new Post();
+       $newPost->fill($data);
+       $saved = $newPost->save();
+
+       if ($saved) {
+           if (! empty($data['tags'])) {
+               $newPost->tags()->attach($data['tags']);
+           }
+           return redirect()->route('posts.show', $newPost->slug);
+       }
+
     }
 
     /**
@@ -51,9 +80,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post = Post::where('slug', $slug )->first();
+        if (empty($post)) {
+            abort(404);
+        }
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -89,4 +122,10 @@ class PostController extends Controller
     {
         //
     }
+
+    // public function validation() {
+    //     return [
+
+    //     ]
+    // }
 }

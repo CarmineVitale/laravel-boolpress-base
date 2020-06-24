@@ -1,3 +1,6 @@
 @include('shared.header')
-@yield('content')
+<div class="container">
+   @yield('content') 
+</div>
+
 @include('shared.footer')

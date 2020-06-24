@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'users_id',
+        'user_id',
         'title',
         'description',
+        'slug'
     ];
 
 
@@ -19,6 +20,10 @@ class Post extends Model
 
     public function comments() {
         return $this->hasMany('App\Comment');
+    }
+
+    public function tags() {
+        return $this->belongsToMany('App\Tag');
     }
    
 }

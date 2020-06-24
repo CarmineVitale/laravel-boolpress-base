@@ -2,8 +2,8 @@
 @section('content')
     <h1>Commenti</h1>
     @foreach ($comments as $comment)
-    <h2>Titolo commento: </h2> <span>{{$comment->title}}</span> 
-    <h2>Commento: </h2> <p>{{$comment->body}}</p> 
+    <h2 class="text-primary">{{$comment->title}}</h2> 
+    <p class="text-success">{{$comment->body}}</p> 
     @endforeach
     
 @endsection

@@ -3,15 +3,16 @@
     <h1>Posts</h1>
     @foreach ($posts as $post)
         <div>
-            <h3>Titolo: {{ $post->title }}</h3>
-            <h4>Scritto da: {{ $post->user->name }}</h4>
+            <h3 class="text-success">{{ $post->title }}</h3>
+            <p class="text-primary">Scritto da: {{ $post->user->name }}</p>
             <p>{{ $post->description }}</p>
-            <h4>Commenti</h4>
+            <a href="{{ route('posts.show', $post->slug )}}">Dettagli</a>
+            
             <ul>
                 @forelse ($post->comments as $item)
                 <li> <small>Titolo commento:</small>{{$item->title}} <br> <small>Corpo commento:</small> {{$item->body}} </li>
                 @empty
-                   <h2>Commenti non presenti</h2>
+                   <h2 class="text-danger">Commenti non presenti</h2>
                 @endforelse
             </ul>
             
@@ -22,7 +23,7 @@
         </div>
     @endforeach
     {{-- Impaginazione posts --}}
-    <h4>
+    <div class="d-flex justify-content-center">
         {{ $posts->links() }}
-    </h4>
+    </div>
 @endsection
